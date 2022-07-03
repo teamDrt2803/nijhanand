@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "436526262278",
+    "project_id": "nijhanand-24248",
+    "storage_bucket": "nijhanand-24248.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:436526262278:android:d297540db82e649b357b87",
+        "android_client_info": {
+          "package_name": "com.example.nijhanand"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "436526262278-p8e1sc3g5o2s67b30h50413a4h20fur1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALfZka9414p5oazS5wihemMVhrTL047io"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "436526262278-p8e1sc3g5o2s67b30h50413a4h20fur1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "436526262278-iht1a59itnjkf5f147o2jtl26v43kmmp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nijhanand"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:436526262278:android:1e7e5b6b34869de3357b87",
+        "android_client_info": {
+          "package_name": "com.nijhanand"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "436526262278-p8e1sc3g5o2s67b30h50413a4h20fur1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALfZka9414p5oazS5wihemMVhrTL047io"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "436526262278-p8e1sc3g5o2s67b30h50413a4h20fur1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "436526262278-iht1a59itnjkf5f147o2jtl26v43kmmp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nijhanand"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
