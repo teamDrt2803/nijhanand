@@ -93,13 +93,18 @@ class _BhajanvaliState extends State<Bhajanvali> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
-                                        _bhajanModal.title,
-                                        style: const TextStyle(
-                                            fontFamily: 'Noto Serif Gujarati',
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w500),
+                                      SizedBox(
+                                        width: MediaQuery.of(context).size.width * 0.75,
+                                        child: Text(
+                                          _bhajanModal.title,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: const TextStyle(
+                                              fontFamily: 'Noto Serif Gujarati',
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w500,),
+                                        ),
                                       ),
+                                   
                                       IconButton(
                                           onPressed: (() {}),
                                           icon: const Icon(

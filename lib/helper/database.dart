@@ -9,7 +9,10 @@ class FirestoreDb {
         .set(bhajanModal.toJson());
   }
 
-  static Stream<List<Bhajan>> get bhajanStream =>
-      firebaseFirestore.collection('Bhajans').snapshots().map((querySnapshot) =>
-          querySnapshot.docs.map(Bhajan.fromDocumentSnapshot).toList());
+   static Stream<List<Bhajan>> get bhajanStream => firebaseFirestore
+      .collection('Bhajans')
+      .snapshots()
+      .map((event) => event.docs.map(Bhajan.fromDocumentSnapshot).toList());
+
+  
 }

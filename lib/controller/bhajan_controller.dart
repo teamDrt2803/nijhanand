@@ -1,23 +1,28 @@
-import 'dart:developer';
 
 import 'package:get/get.dart';
-import 'package:nijhanand/modals/bhajan_modal.dart';
+import 'package:hive/hive.dart';
+import 'package:nijhanand/helper/database.dart';
 
-import '../utils/constants.dart';
 
 class BhajanController extends GetxController {
-  RxList<Bhajan> bhajanList = RxList();
+  RxList bhajanList = RxList();
+  Box bhajanBox=Hive.box('Bhajans');
+  final _bhajans =[];
 
   static BhajanController get instance => Get.find();
-  static Stream<List<Bhajan>> get bhajanStream => firebaseFirestore
-      .collection('Bhajans')
-      .snapshots()
-      .map((event) => event.docs.map(Bhajan.fromDocumentSnapshot).toList());
 
   @override
   void onInit() {
     super.onInit();
-    log('Initialising');
-    bhajanList.bindStream(bhajanStream);
+    bhajanList.bindStream(FirestoreDb.bhajanStream);
+    bhajanBox.add(bhajanList);
+    for(int i=1;i < bhajanBox.values.length; i++){
+      _bhajans.add(bhajanBox.getAt(i));
+      print(_bhajans.length);
+    }
+
+    
   }
+
+  
 }
