@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -8,15 +7,13 @@ import 'package:nijhanand/modals/bhajan_modal.dart';
 import 'package:nijhanand/utils/constants.dart';
 
 import 'package:get/get.dart';
-import 'package:path_provider/path_provider.dart';
 
 import 'helper/initial_bindings.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  Directory dir = await getApplicationDocumentsDirectory();
-  await Hive.initFlutter(dir.path);
+  await Hive.initFlutter();
   Hive.registerAdapter<Bhajan>(BhajanAdapter());
   await Hive.openBox('Bhajans');
   runApp(const MyApp());

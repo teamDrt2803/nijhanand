@@ -12,7 +12,7 @@ class FirestoreDb {
    static Stream<List<Bhajan>> get bhajanStream => firebaseFirestore
       .collection('Bhajans')
       .snapshots()
-      .map((event) => event.docs.map(Bhajan.fromDocumentSnapshot).toList());
+      .map((event) => event.docs.map(Bhajan.fromJson).toList());
 
-  
+   
 }
