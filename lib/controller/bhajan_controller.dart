@@ -1,21 +1,21 @@
 import 'dart:developer';
 
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 import 'package:nijhanand/helper/database.dart';
+import 'package:nijhanand/utils/constants.dart';
 
 import '../modals/bhajan_modal.dart';
 
 class BhajanController extends GetxController {
   RxList<Bhajan> bhajanList = RxList();
-  final box = Hive.box<Bhajan>('Bhajans');
+ 
   static BhajanController get instance => Get.find();
 
   void handleBhajanlistUpdate(List<Bhajan> bhajanList) {
     log('handleBhajanlistUpdate: ${bhajanList.map((e) => e.toString())}',
         name: 'BhajanController');
-    box.clear().then((value) {
-      box.addAll(bhajanList);
+    Boxes().bhajanBox.clear().then((value) {
+      Boxes().bhajanBox.addAll(bhajanList);
     });
   }
 
@@ -31,7 +31,7 @@ class BhajanController extends GetxController {
     }
   }
 
-  bool get hasLocalData => box.isNotEmpty;
+  bool get hasLocalData => Boxes().bhajanBox.isNotEmpty;
 
   @override
   void onInit() {

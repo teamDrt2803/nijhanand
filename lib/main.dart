@@ -16,6 +16,7 @@ Future main() async {
   Hive.registerAdapter<Bhajan>(BhajanAdapter());
   await Hive.openBox<Bhajan>('Bhajans');
   await Hive.openBox('app_config');
+  await Hive.openBox('favorites');
   runApp(const MyApp());
 }
 
