@@ -9,6 +9,11 @@ class FirestoreDb {
         defaultValue: DateTime.now().millisecondsSinceEpoch,
       );
   static addBhajan(Bhajan bhajanModal) async {
+    firebaseFirestore
+        .collection('app_config')
+        .doc('X0BblWubPMj13hHAg718')
+        .set({Constants.lastUpdated: DateTime.now().millisecondsSinceEpoch});
+
     return firebaseFirestore
         .collection('Bhajans')
         .doc(bhajanModal.title)
