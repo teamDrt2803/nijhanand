@@ -15,7 +15,6 @@ class Bhajanvali extends StatefulWidget {
 }
 
 class _BhajanvaliState extends State<Bhajanvali> {
- 
   final bhajanController = BhajanController.instance;
 
   @override
@@ -108,7 +107,7 @@ class _BhajanvaliState extends State<Bhajanvali> {
               //                                 fontWeight: FontWeight.w500,),
               //                           ),
               //                         ),
-                                   
+
               //                         IconButton(
               //                             onPressed: (() {}),
               //                             icon: const Icon(
@@ -124,62 +123,64 @@ class _BhajanvaliState extends State<Bhajanvali> {
               //         }),
               //   ),
               // ),
-              ValueListenableBuilder(valueListenable: bhajanBox, builder: (context,Box items,_){
-                   List<int>? keys;
-
-                return   Padding(
-                  padding: EdgeInsets.only(
-                      left: 8.0,
-                      right: 8.0,
-                      top: MediaQuery.of(context).size.height * 0.18),
-                  child: ListView.builder(
-                      itemCount: keys!.length,
-                      itemBuilder: (_, int index) {
-                       
-                           final int key = keys[index];
-                        final Bhajan? _bhajanModal = items.get(key);
-                        print(_bhajanModal);
-                        return Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: GestureDetector(
-                                  onTap: (() {
-                                    Get.toNamed(Routes.lyrics, arguments: {
-                                      "bhajan": _bhajanModal,
-                                    });
-                                  }),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      SizedBox(
-                                        width: MediaQuery.of(context).size.width * 0.75,
-                                        child: Text(
-                                          _bhajanModal!.title,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: const TextStyle(
-                                              fontFamily: 'Noto Serif Gujarati',
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w500,),
-                                        ),
-                                      ),
-                                   
-                                      IconButton(
-                                          onPressed: (() {}),
-                                          icon: const Icon(
-                                              Icons.favorite_border_rounded))
-                                    ],
-                                  )),
-                            ),
-                            const Divider(
-                              height: 8.0,
-                            ),
-                          ],
-                        );
-                      }),
-                );
-              })
+              ValueListenableBuilder(
+                  valueListenable: Hive.box<Bhajan>('Bhajans').listenable(),
+                  builder: (context, Box<Bhajan> bhajans, _) {
+                    return Padding(
+                      padding: EdgeInsets.only(
+                          left: 8.0,
+                          right: 8.0,
+                          top: MediaQuery.of(context).size.height * 0.18),
+                      child: ListView.builder(
+                          itemCount: bhajans.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            final _bhajanModal = bhajans.getAt(index);
+                            print(_bhajanModal);
+                            return Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: GestureDetector(
+                                      onTap: (() {
+                                        Get.toNamed(Routes.lyrics, arguments: {
+                                          "bhajan": _bhajanModal,
+                                        });
+                                      }),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.75,
+                                            child: Text(
+                                              _bhajanModal!.title,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: const TextStyle(
+                                                fontFamily:
+                                                    'Noto Serif Gujarati',
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ),
+                                          IconButton(
+                                              onPressed: (() {}),
+                                              icon: const Icon(Icons
+                                                  .favorite_border_rounded))
+                                        ],
+                                      )),
+                                ),
+                                const Divider(
+                                  height: 8.0,
+                                ),
+                              ],
+                            );
+                          }),
+                    );
+                  })
             ],
           ),
         ),
