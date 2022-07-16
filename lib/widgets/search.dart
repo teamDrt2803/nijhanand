@@ -21,7 +21,7 @@ class SearchWidget extends SearchDelegate<Bhajan> {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: const Icon(Icons.arrow_back),
+      icon: const Icon(Icons.arrow_back_ios),
       onPressed: () {
         Get.back();
         FocusScope.of(context).unfocus();
