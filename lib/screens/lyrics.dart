@@ -22,11 +22,12 @@ class Lyrics extends StatelessWidget {
         ),
       ),
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 24.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
         child: SingleChildScrollView(
-          child: Text(
+          child: SelectableText(
             bhajan.lyrics,
-            style: const TextStyle(fontFamily: 'Rasa',fontSize: 22.0),textAlign: TextAlign.center,
+            style: const TextStyle(fontFamily: 'Rasa', fontSize: 22.0),
+            textAlign: TextAlign.center,
           ),
         ),
       ),

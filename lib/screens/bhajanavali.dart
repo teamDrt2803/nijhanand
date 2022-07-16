@@ -126,8 +126,6 @@ class _BhajanvaliState extends State<Bhajanvali> {
               ValueListenableBuilder(
                   valueListenable: bhajanController.box.listenable(),
                   builder: (context, Box<Bhajan> bhajans, _) {
-                    print('list render');
-                    print(bhajanController.box.values);
                     return Padding(
                       padding: EdgeInsets.only(
                           left: 8.0,

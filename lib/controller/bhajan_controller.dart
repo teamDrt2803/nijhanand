@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:nijhanand/helper/database.dart';
@@ -11,8 +13,10 @@ class BhajanController extends GetxController {
   static BhajanController get instance => Get.find();
 
   void handleBhajanlist(List<Bhajan> bhajanList) {
-    box.clear();
-    box.addAll(bhajanList);
+    box.clear().then((value) {
+      box.addAll(bhajanList);
+    });
+    log('handleBhajanlist: ${bhajanList.length}', name: 'BhajanController');
   }
 
   @override
