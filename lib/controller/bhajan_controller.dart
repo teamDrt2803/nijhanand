@@ -9,21 +9,37 @@ import '../modals/bhajan_modal.dart';
 class BhajanController extends GetxController {
   RxList<Bhajan> bhajanList = RxList();
   final box = Hive.box<Bhajan>('Bhajans');
-
   static BhajanController get instance => Get.find();
 
-  void handleBhajanlist(List<Bhajan> bhajanList) {
+  void handleBhajanlistUpdate(List<Bhajan> bhajanList) {
+    log('handleBhajanlistUpdate: ${bhajanList.map((e) => e.toString())}',
+        name: 'BhajanController');
     box.clear().then((value) {
       box.addAll(bhajanList);
     });
-    log('handleBhajanlist: ${bhajanList.length}', name: 'BhajanController');
   }
+
+  void fetchData() {
+    log('fetchData', name: 'BhajanController');
+    FirestoreDb.bhajanStream.first.then(handleBhajanlistUpdate);
+  }
+
+  void handleUpdate(bool hasUpdate) {
+    log('handleUpdate: $hasUpdate', name: 'BhajanController');
+    if (hasUpdate) {
+      fetchData();
+    }
+  }
+
+  bool get hasLocalData => box.isNotEmpty;
 
   @override
   void onInit() {
     super.onInit();
-    ever(bhajanList, handleBhajanlist);
-    bhajanList.bindStream(FirestoreDb.bhajanStream);
-    // box.addAll([...bhajanList.value]);
+    FirestoreDb.hasUpdateStream.listen(handleUpdate);
+    log('Checking if data exists: $hasLocalData', name: 'BhajanController');
+    if (!hasLocalData) {
+      fetchData();
+    }
   }
 }

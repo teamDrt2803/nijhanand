@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hive/hive.dart';
 
-
 part 'bhajan_modal.g.dart';
+
 @HiveType(typeId: 0)
 class Bhajan extends HiveObject {
   @HiveField(0)
@@ -25,4 +25,8 @@ class Bhajan extends HiveObject {
 
   Map<String, dynamic> toJson() => {'Title': title, 'Lyrics': lyrics};
 
+  @override
+  String toString() {
+    return 'Bhajan{title: $title, lyrics: $lyrics}';
+  }
 }
