@@ -124,18 +124,19 @@ class _BhajanvaliState extends State<Bhajanvali> {
               //   ),
               // ),
               ValueListenableBuilder(
-                  valueListenable: Hive.box<Bhajan>('Bhajans').listenable(),
+                  valueListenable: bhajanController.box.listenable(),
                   builder: (context, Box<Bhajan> bhajans, _) {
+                    print('list render');
+                    print(bhajanController.box.values);
                     return Padding(
                       padding: EdgeInsets.only(
                           left: 8.0,
                           right: 8.0,
                           top: MediaQuery.of(context).size.height * 0.18),
                       child: ListView.builder(
-                          itemCount: bhajans.length,
+                          itemCount: bhajans.values.length,
                           itemBuilder: (BuildContext context, int index) {
                             final _bhajanModal = bhajans.getAt(index);
-                            print(_bhajanModal);
                             return Column(
                               children: [
                                 Padding(
