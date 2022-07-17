@@ -32,37 +32,23 @@ class _BhajanvaliState extends State<Bhajanvali> {
           body: Stack(
             children: [
               Container(
-                height: MediaQuery.of(context).size.height * 0.18,
+                height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(color: primaryColor),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                Get.back();
-                              },
-                              icon: const Icon(
-                                Icons.arrow_back_ios_new,
-                                color: Colors.white,
-                              )),
-                          const Text(
-                            'ભજનાવલી ',
-                            style: TextStyle(fontSize: 30, color: Colors.white),
-                          ),
-                          IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.favorite,
-                                color: Colors.white,
-                              )),
-                        ],
-                      ),
+                    Column(
+                      children: const [
+                        Text(
+                          'ૐ નામો નારાયણ',
+                          style: TextStyle(fontSize: 24, color: Colors.white),
+                        ),
+                        Text(
+                          'જય ગિરનારી',
+                          style: TextStyle(fontFamily: 'Rasa',fontSize: 64, color: Colors.white),
+                        ),
+                      ],
                     ),
                     Padding(
                       padding: const EdgeInsets.all(12.0),
@@ -102,49 +88,75 @@ class _BhajanvaliState extends State<Bhajanvali> {
                   ],
                 ),
               ),
-              ValueListenableBuilder(
-                valueListenable: Boxes().bhajanBox.listenable(),
-                builder: (context, Box<Bhajan> bhajans, _) {
-                  var results = query == null
-                      ? bhajans.values.toList()
-                      : bhajans.values
-                          .where((bhajan) => bhajan.lyrics.contains(query!))
-                          .toList;
-                  return Padding(
-                    padding: EdgeInsets.only(
-                        left: 8.0,
-                        right: 8.0,
-                        top: MediaQuery.of(context).size.height * 0.18),
-                    child: ListView.builder(
-                        itemCount: bhajans.values.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          final _bhajanModal = bhajans.getAt(index);
-                          return Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: GestureDetector(
-                                    onTap: (() {
-                                      Get.toNamed(Routes.lyrics, arguments: {
-                                        "bhajan": _bhajanModal,
-                                      });
-                                    }),
+              Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 0.65,
+                    color: Colors.white,
+                    child: ValueListenableBuilder(
+                      valueListenable: Boxes().bhajanBox.listenable(),
+                      builder: (context, Box<Bhajan> bhajans, _) {
+                        var results = query == null
+                            ? bhajans.values.toList()
+                            : bhajans.values
+                                .where(
+                                    (bhajan) => bhajan.lyrics.contains(query!))
+                                .toList;
+                        return Padding(
+                          padding: const EdgeInsets.only(
+                            left: 8.0,
+                            right: 8.0,
+                          ),
+                          child: ListView.builder(
+                              itemCount: bhajans.values.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                final _bhajanModal = bhajans.getAt(index);
+                                return Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Container(
+                                    height: 70,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(8.0),
+                                        ),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.shade400,
+                                            offset: const Offset(1, 1),
+                                            blurRadius: 6.0,
+                                            spreadRadius: 1,
+                                          ),
+                                        ]),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        SizedBox(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.75,
-                                          child: Text(
-                                            _bhajanModal!.title,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: const TextStyle(
-                                              fontFamily: 'Noto Serif Gujarati',
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w500,
+                                        GestureDetector(
+                                          onTap: (() {
+                                            Get.toNamed(Routes.lyrics,
+                                                arguments: {
+                                                  "bhajan": _bhajanModal,
+                                                });
+                                          }),
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 8.0),
+                                            child: SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.75,
+                                              child: Text(
+                                                _bhajanModal!.title,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: const TextStyle(
+                                                  fontFamily:
+                                                      'Noto Serif Gujarati',
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -157,17 +169,14 @@ class _BhajanvaliState extends State<Bhajanvali> {
                                                   : Colors.black,
                                             ))
                                       ],
-                                    )),
-                              ),
-                              const Divider(
-                                height: 8.0,
-                              ),
-                            ],
-                          );
-                        }),
-                  );
-                },
-              ),
+                                    ),
+                                  ),
+                                );
+                              }),
+                        );
+                      },
+                    ),
+                  )),
             ],
           ),
         ),

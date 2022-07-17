@@ -1,53 +1,55 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:nijhanand/helper/routes.dart';
-import 'package:nijhanand/utils/constants.dart';
+import 'package:nijhanand/screens/bhajanavali.dart';
 
 class Homepage extends StatefulWidget {
-  const Homepage({ Key? key }) : super(key: key);
+  const Homepage({Key? key}) : super(key: key);
 
   @override
   State<Homepage> createState() => _HomepageState();
 }
 
 class _HomepageState extends State<Homepage> {
-  final myMenuItems={'Upload','Bhajanavali'};
+  final dataList = [
+    {'icon': Icons.home, 'route': Routes.home},
+    {'icon': Icons.upload_rounded, 'route': Routes.upload},
+    {'icon': Icons.favorite_outline_rounded, 'route': ''}
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-        appBar: AppBar(
-            centerTitle: true,
-            title: const Text(
-              'નિજાનંદ',
-              style: TextStyle(fontSize: 30),
-            ),
-            systemOverlayStyle: const SystemUiOverlayStyle(
-              statusBarColor: primaryColor,
-            ),
-            actions: [
-              PopupMenuButton(
-                itemBuilder: (BuildContext context) {
-                  return myMenuItems.map((item) {
-                    return PopupMenuItem(
-                      child: Text(item),
-                      value: item,
-                    );
-                  }).toList();
+    return Scaffold(
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+                onPressed: () {
+                  Get.toNamed(Routes.home);
                 },
-                onSelected: (page) {
-                  switch (page) {
-                    case 'Upload':
-                      Get.toNamed(Routes.upload);
-                      break;
-                     case 'Bhajanavali':
-                      Get.toNamed(Routes.bhajanavali);
-                      break;
-                  }
+                icon: const Icon(
+                  Icons.home,
+                  size: 32,
+                )),
+            IconButton(
+                onPressed: () {
+                     Get.toNamed(Routes.upload);
                 },
-              )
-            ],
-          ),
+                icon: const Icon(
+                  Icons.upload_rounded,
+                  size: 32,
+                )),
+            IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.favorite_outline_rounded,
+                  size: 32,
+                )),
+          ],
+        ),
+      ),
+      body: const Bhajanvali(),
     );
   }
 }

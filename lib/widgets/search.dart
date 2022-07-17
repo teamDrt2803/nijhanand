@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:nijhanand/utils/constants.dart';
 
 import '../helper/routes.dart';
 import '../modals/bhajan_modal.dart';
@@ -9,8 +10,8 @@ class SearchWidget extends SearchDelegate<Bhajan> {
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
-      IconButton(
-        icon: const Icon(Icons.clear),
+      TextButton(
+       child: const Text('Clear',style: TextStyle(color: primaryColor),),
         onPressed: () {
           query = '';
         },
