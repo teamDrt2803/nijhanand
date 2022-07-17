@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:nijhanand/helper/routes.dart';
 import 'package:nijhanand/screens/bhajanavali.dart';
+import 'package:nijhanand/screens/upload.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -11,11 +10,8 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  final dataList = [
-    {'icon': Icons.home, 'route': Routes.home},
-    {'icon': Icons.upload_rounded, 'route': Routes.upload},
-    {'icon': Icons.favorite_outline_rounded, 'route': ''}
-  ];
+    int pageIndex = 0;
+  final pages=[const Bhajanvali(),const Uploadpage()];
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +22,9 @@ class _HomepageState extends State<Homepage> {
           children: [
             IconButton(
                 onPressed: () {
-                  Get.toNamed(Routes.home);
+                 setState(() {
+                pageIndex = 0;
+              });
                 },
                 icon: const Icon(
                   Icons.home,
@@ -34,7 +32,9 @@ class _HomepageState extends State<Homepage> {
                 )),
             IconButton(
                 onPressed: () {
-                     Get.toNamed(Routes.upload);
+                    setState(() {
+                pageIndex = 1;
+              });
                 },
                 icon: const Icon(
                   Icons.upload_rounded,
@@ -49,7 +49,7 @@ class _HomepageState extends State<Homepage> {
           ],
         ),
       ),
-      body: const Bhajanvali(),
+      body: pages[pageIndex],
     );
   }
 }
