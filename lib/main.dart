@@ -1,11 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:nijhanand/helper/routes.dart';
 import 'package:nijhanand/modals/bhajan_modal.dart';
-import 'package:nijhanand/utils/constants.dart';
-
-import 'package:get/get.dart';
+import 'package:nijhanand/screens/bhajanavali.dart';
+import 'package:nijhanand/screens/home.dart';
+import 'package:nijhanand/screens/upload.dart';
 
 import 'helper/initial_bindings.dart';
 
@@ -27,10 +28,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(color: primaryColor),
-        primaryColor: primaryColor,
-      ),
+      routes: {
+        '/': (context) => const Homepage(),
+        '/bhajanvali': (context) => const Bhajanvali(),
+        '/upload': (context) => const Uploadpage(),
+      },
       getPages: pages,
       initialBinding: InitialBinding(),
       initialRoute: Routes.home,
