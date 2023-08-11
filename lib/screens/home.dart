@@ -18,14 +18,13 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return AnnotatedRegion(
       value: SystemUiOverlayStyle.dark.copyWith(
-        statusBarColor: Colors.black,
+        statusBarColor: Colors.white,
       ),
       child: Scaffold(
         body: SafeArea(
           child: pages.elementAt(pageIndex),
         ),
         bottomNavigationBar: Container(
-          padding: const EdgeInsets.only(top: 8.0),
           decoration: const BoxDecoration(
               border: Border(
                   top: BorderSide(
