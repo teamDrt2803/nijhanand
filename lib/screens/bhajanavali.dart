@@ -29,18 +29,38 @@ class _BhajanvaliState extends State<Bhajanvali> {
       child: Scaffold(
         body: Column(
           children: [
+            const Column(
+              children: [
+                Text(
+                  'નિજાનંદ',
+                  style: TextStyle(
+                    fontFamily: 'Kohinoor Gujarati',
+                    fontSize: 30,
+                    color: Color(0xff3B3B3E),
+                  ),
+                ),
+                Text(
+                  '|| જય ગિરનારી ||',
+                  style: TextStyle(
+                    fontFamily: 'Rasa',
+                    fontSize: 22,
+                    color: Color(0xffF38E61),
+                  ),
+                )
+              ],
+            ),
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Container(
                 height: 50,
                 decoration: BoxDecoration(
-                    color: const Color(0xff979797).withOpacity(0.1),
+                    color: const Color(0xffF1EEE9),
                     borderRadius: BorderRadius.circular(8.0)),
                 padding: const EdgeInsets.all(12.0),
                 child: Row(
                   children: [
                     const Icon(
-                      Icons.search_rounded,
+                      Icons.search,
                     ),
                     const SizedBox(
                       width: 8,
@@ -52,10 +72,14 @@ class _BhajanvaliState extends State<Bhajanvali> {
                       },
                       autofocus: false,
                       decoration: const InputDecoration.collapsed(
-                          border: InputBorder.none,
-                          hintText: 'Search',
-                          hintStyle:
-                              TextStyle(fontSize: 22, color: Colors.black)),
+                        border: InputBorder.none,
+                        hintText: 'Search ભજન',
+                        hintStyle: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xff3B3B3E),
+                          fontFamily: 'Kohinoor Gujarati',
+                        ),
+                      ),
                     ))
                   ],
                 ),
@@ -80,14 +104,14 @@ class _BhajanvaliState extends State<Bhajanvali> {
                                 height: 8,
                               ),
                           itemBuilder: (BuildContext context, int index) {
-                            final _bhajanModal = bhajans.getAt(index);
+                            final bhajanModal = bhajans.getAt(index);
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 GestureDetector(
                                   onTap: (() {
                                     Get.toNamed(Routes.lyrics, arguments: {
-                                      "bhajan": _bhajanModal,
+                                      "bhajan": bhajanModal,
                                     });
                                   }),
                                   child: Padding(
@@ -96,12 +120,12 @@ class _BhajanvaliState extends State<Bhajanvali> {
                                       width: MediaQuery.of(context).size.width *
                                           0.75,
                                       child: Text(
-                                        _bhajanModal!.title,
+                                        bhajanModal!.title,
                                         overflow: TextOverflow.ellipsis,
                                         style: const TextStyle(
-                                          fontFamily: 'Noto Serif Gujarati',
+                                          fontFamily: 'Kohinoor Gujarati',
                                           fontSize: 20,
-                                          color: Color(0xffFF7643),
+                                          color: Color(0xff3B3B3E),
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),
